@@ -1,0 +1,201 @@
+// FrS Finance — Prisma schema
+//
+// Multi-tenant via Tenant + Membership join. Row-level security in Postgres
+// should be added in a follow-up migration that restricts SELECT/UPDATE/DELETE
+// on every tenant-scoped table to `tenant_id = current_setting('app.current_tenant_id')`.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  OWNER
+  EDITOR
+  VIEWER
+}
+
+enum MovementType {
+  EXPENSE
+  INCOME
+  TRANSFER
+  INVESTMENT
+}
+
+enum MovementSource {
+  MANUAL
+  API
+  WHATSAPP
+}
+
+enum AccountType {
+  CHECKING
+  SAVINGS
+  INVESTMENT
+  CREDIT
+}
+
+enum InvoiceStatus {
+  OPEN
+  PARTIAL
+  PAID
+}
+
+model User {
+  id           String       @id @default(cuid())
+  email        String       @unique
+  passwordHash String?
+  firstName    String
+  lastName     String
+  photoUrl     String?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  memberships  Membership[]
+  preferences  UserPreference?
+}
+
+model UserPreference {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  theme     String   @default("light")       // "light" | "dark"
+  palette   String   @default("terracota")   // "terracota" | "bordo" | "verde"
+  locale    String   @default("pt-BR")
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  updatedAt DateTime @updatedAt
+}
+
+model Tenant {
+  id          String        @id @default(cuid())
+  name        String
+  slug        String        @unique
+  createdAt   DateTime      @default(now())
+  memberships Membership[]
+  accounts    BankAccount[]
+  movements   Movement[]
+  categories  Category[]
+  connections BankConnection[]
+  creditCards CreditCard[]
+  invoices    Invoice[]
+}
+
+model Membership {
+  id        String   @id @default(cuid())
+  userId    String
+  tenantId  String
+  role      Role     @default(OWNER)
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tenant    Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, tenantId])
+  @@index([tenantId])
+}
+
+model BankConnection {
+  id            String        @id @default(cuid())
+  tenantId      String
+  provider      String        // "belvo" | "pluggy" | "manual"
+  bankName      String
+  externalId    String?
+  consentExpiry DateTime?
+  scopes        String[]
+  active        Boolean       @default(true)
+  lastSyncAt    DateTime?
+  createdAt     DateTime      @default(now())
+  tenant        Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  accounts      BankAccount[]
+
+  @@unique([tenantId, provider, externalId])
+  @@index([tenantId])
+}
+
+model BankAccount {
+  id           String         @id @default(cuid())
+  tenantId     String
+  connectionId String?
+  type         AccountType    @default(CHECKING)
+  bankName     String
+  nickname     String?
+  number       String?
+  balance      Decimal        @db.Decimal(14, 2) @default(0)
+  available    Decimal        @db.Decimal(14, 2) @default(0)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  tenant       Tenant         @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  connection   BankConnection? @relation(fields: [connectionId], references: [id], onDelete: SetNull)
+  movements    Movement[]
+
+  @@index([tenantId])
+}
+
+model Category {
+  id            String     @id @default(cuid())
+  tenantId      String
+  name          String
+  letter        String?    @db.Char(1)
+  color         String?
+  budget        Decimal?   @db.Decimal(14, 2)
+  parentId      String?
+  parent        Category?  @relation("CategoryTree", fields: [parentId], references: [id], onDelete: SetNull)
+  children      Category[] @relation("CategoryTree")
+  movements     Movement[]
+  tenant        Tenant     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@unique([tenantId, name, parentId])
+  @@index([tenantId])
+}
+
+model Movement {
+  id           String         @id @default(cuid())
+  tenantId     String
+  accountId    String?
+  categoryId   String?
+  type         MovementType
+  source       MovementSource @default(MANUAL)
+  amount       Decimal        @db.Decimal(14, 2)
+  description  String
+  occurredAt   DateTime
+  reconciledAt DateTime?
+  createdAt    DateTime       @default(now())
+  account      BankAccount?   @relation(fields: [accountId], references: [id], onDelete: SetNull)
+  category     Category?      @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  tenant       Tenant         @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId, occurredAt])
+  @@index([accountId])
+}
+
+model CreditCard {
+  id             String    @id @default(cuid())
+  tenantId       String
+  bankName       String
+  product        String
+  numberMask     String
+  holder         String
+  utilizationPct Int       @default(0)
+  expiry         String
+  createdAt      DateTime  @default(now())
+  tenant         Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  invoices       Invoice[]
+
+  @@index([tenantId])
+}
+
+model Invoice {
+  id        String        @id @default(cuid())
+  tenantId  String
+  cardId    String
+  closingAt DateTime
+  dueAt     DateTime
+  amount    Decimal       @db.Decimal(14, 2)
+  status    InvoiceStatus @default(OPEN)
+  card      CreditCard    @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  tenant    Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId])
+  @@index([cardId])
+}

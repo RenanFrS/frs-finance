@@ -1,0 +1,24 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: frs-finance-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-frs_finance}
+      POSTGRES_USER: ${POSTGRES_USER:-frs}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-frs_local_dev}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - frs-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-frs} -d ${POSTGRES_DB:-frs_finance}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+
+volumes:
+  frs-postgres-data:
+    name: frs-finance-postgres-data

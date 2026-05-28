@@ -1,0 +1,1692 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FrS Finance — Identidade Visual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+<script type="text/javascript">
+/* Palette variations — switchable via Tweaks panel */
+window.FRS_TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "palette": "verde",
+  "theme": "light",
+  "grain": true,
+  "ornaments": true
+}/*EDITMODE-END*/;
+</script>
+
+<style>
+:root {
+  /* === FrS · Terracota Brûlée (light) ====================== */
+  --paper:        oklch(0.965 0.012 78);     /* #faf6ee */
+  --paper-2:      oklch(0.945 0.018 75);     /* warm tonal step */
+  --paper-3:      oklch(0.915 0.024 72);     /* sépia card */
+  --ink:          oklch(0.215 0.022 50);     /* deep walnut text */
+  --ink-2:        oklch(0.355 0.025 50);     /* secondary ink */
+  --ink-3:        oklch(0.52  0.022 55);     /* tertiary / muted */
+  --rule:         oklch(0.85  0.022 70);     /* hairline rule */
+  --primary:      oklch(0.48  0.135 45);     /* terracota — #9c4a1a-ish */
+  --primary-ink:  oklch(0.972 0.018 80);     /* on-primary */
+  --primary-soft: oklch(0.92  0.04 50);      /* tinted surface */
+  --accent:       oklch(0.40  0.07  60);     /* secondary accent — burnt sienna deep */
+  --positive:     oklch(0.44  0.075 145);    /* moss / verdigris — gains */
+  --negative:     oklch(0.42  0.13  25);     /* oxblood — expenses */
+  --gold:         oklch(0.72  0.10  80);     /* aged brass */
+  --shadow-vintage: 0 1px 0 rgba(60,40,20,.03), 0 8px 24px -12px rgba(60,40,20,.12);
+}
+
+html[data-theme="dark"] {
+  /* === FrS · Couro Envelhecido (dark) ====================== */
+  --paper:        oklch(0.165 0.014 40);     /* dark coffee */
+  --paper-2:      oklch(0.205 0.018 42);
+  --paper-3:      oklch(0.245 0.022 44);
+  --ink:          oklch(0.93  0.022 80);
+  --ink-2:        oklch(0.78  0.020 75);
+  --ink-3:        oklch(0.60  0.018 70);
+  --rule:         oklch(0.32  0.020 50);
+  --primary:      oklch(0.70  0.13  50);     /* warmed terracota */
+  --primary-ink:  oklch(0.155 0.018 40);
+  --primary-soft: oklch(0.28  0.05  50);
+  --accent:       oklch(0.62  0.08  60);
+  --positive:     oklch(0.68  0.085 145);
+  --negative:     oklch(0.68  0.13  28);
+  --gold:         oklch(0.78  0.10  80);
+  --shadow-vintage: 0 1px 0 rgba(0,0,0,.4), 0 12px 32px -14px rgba(0,0,0,.6);
+}
+
+/* === Palette variation: Bordô Reserva ====================== */
+html[data-palette="bordo"] {
+  --primary:      oklch(0.40  0.115 22);     /* deep burgundy */
+  --primary-soft: oklch(0.91  0.045 25);
+  --accent:       oklch(0.50  0.07 30);
+}
+html[data-palette="bordo"][data-theme="dark"] {
+  --primary:      oklch(0.66  0.13  25);
+  --primary-soft: oklch(0.28  0.06  25);
+}
+
+/* === Palette variation: Verde Cofre ====================== */
+html[data-palette="verde"] {
+  --primary:      oklch(0.36  0.05 165);     /* bottle green */
+  --primary-soft: oklch(0.92  0.025 155);
+  --accent:       oklch(0.46  0.045 155);
+}
+html[data-palette="verde"][data-theme="dark"] {
+  --primary:      oklch(0.66  0.075 160);
+  --primary-soft: oklch(0.27  0.04  160);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink); }
+body {
+  font-family: 'Newsreader', 'Georgia', serif;
+  font-size: 17px;
+  line-height: 1.55;
+  font-feature-settings: "kern", "liga", "calt";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-optical-sizing: auto;
+  position: relative;
+}
+
+/* Subtle paper grain — toggle-able */
+body[data-grain="true"]::before {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: .35;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.12  0 0 0 0 0.08  0 0 0 0 0.05  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+html[data-theme="dark"] body[data-grain="true"]::before {
+  mix-blend-mode: screen;
+  opacity: .12;
+}
+
+/* Type scale */
+.display, h1.display {
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+  font-size: clamp(48px, 7vw, 96px);
+  line-height: 0.96;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin: 0 0 .4em;
+  color: var(--ink);
+}
+h1 { font-size: 56px; line-height: 1.05; }
+h2 { font-size: 38px; line-height: 1.1; }
+h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.25;
+  margin: 0 0 .35em;
+}
+h4 {
+  font-family: 'Newsreader', serif;
+  font-weight: 500;
+  font-size: 18px;
+  margin: 0 0 .3em;
+}
+p { margin: 0 0 1em; color: var(--ink-2); max-width: 64ch; }
+.lead { font-size: 22px; line-height: 1.5; color: var(--ink-2); font-weight: 400; font-style: italic; }
+
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primary);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before {
+  content: "";
+  width: 28px; height: 1px;
+  background: var(--primary);
+  display: inline-block;
+}
+.mono { font-family: 'JetBrains Mono', monospace; }
+.num  { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+
+/* Layout */
+.shell { position: relative; z-index: 1; max-width: 1240px; margin: 0 auto; padding: 0 56px; }
+section.band { padding: 96px 0; border-top: 1px solid var(--rule); position: relative; }
+section.band:first-of-type { border-top: 0; }
+.section-head { display: grid; grid-template-columns: 140px 1fr; gap: 48px; align-items: baseline; margin-bottom: 56px; }
+.section-head .num-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--ink-3);
+  letter-spacing: 0.15em;
+  padding-top: 18px;
+  border-top: 1px solid var(--ink);
+}
+html[data-theme="dark"] .section-head .num-label { border-top-color: var(--ink-2); }
+
+/* === Header ============================================== */
+.top {
+  position: sticky; top: 0; z-index: 50;
+  backdrop-filter: blur(14px) saturate(1.05);
+  background: color-mix(in oklch, var(--paper) 78%, transparent);
+  border-bottom: 1px solid var(--rule);
+}
+.top-inner {
+  max-width: 1240px; margin: 0 auto;
+  padding: 16px 56px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px;
+}
+.brand { display: flex; align-items: center; gap: 14px; }
+.logo-mark {
+  width: 40px; height: 28px;
+  -webkit-mask: url(assets/logo.svg) center/contain no-repeat;
+          mask: url(assets/logo.svg) center/contain no-repeat;
+  background: var(--ink);
+}
+.brand-word {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+}
+.brand-word small {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  display: block;
+  margin-top: 1px;
+}
+.top-nav { display: flex; gap: 4px; }
+.top-nav a {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 999px;
+  transition: all .2s ease;
+}
+.top-nav a:hover { color: var(--primary); background: var(--primary-soft); }
+.theme-toggle {
+  appearance: none; border: 1px solid var(--rule);
+  background: transparent;
+  color: var(--ink-2);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 9px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: all .2s ease;
+}
+.theme-toggle:hover { border-color: var(--primary); color: var(--primary); }
+.theme-toggle .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--primary); }
+
+/* === Hero ============================================== */
+.hero { padding: 120px 0 96px; position: relative; }
+.hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 80px; align-items: end; }
+.hero h1.display { color: var(--ink); }
+.hero h1.display em { font-style: italic; font-weight: 400; color: var(--primary); }
+.hero .meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-3);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  display: grid;
+  gap: 14px;
+}
+.hero .meta .row { display: grid; grid-template-columns: 110px 1fr; gap: 16px; padding-bottom: 12px; border-bottom: 1px dashed var(--rule); }
+.hero .meta .row span:last-child { color: var(--ink); letter-spacing: 0.06em; }
+
+.crest {
+  display: flex; flex-direction: column; align-items: center; gap: 20px;
+  padding: 36px 28px;
+  border: 1px solid var(--rule);
+  background: var(--paper-2);
+  border-radius: 22px;
+  position: relative;
+}
+.crest .lg-mark {
+  width: 180px; height: 130px;
+  -webkit-mask: url(assets/logo.svg) center/contain no-repeat;
+          mask: url(assets/logo.svg) center/contain no-repeat;
+  background: var(--primary);
+}
+.crest .crest-rule {
+  width: 60%; height: 1px; background: var(--ink);
+  position: relative;
+}
+.crest .crest-rule::before, .crest .crest-rule::after {
+  content: ""; position: absolute; top: -2px;
+  width: 5px; height: 5px; background: var(--ink);
+  transform: rotate(45deg);
+}
+.crest .crest-rule::before { left: -4px; }
+.crest .crest-rule::after { right: -4px; }
+.crest .crest-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.crest .crest-year {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ink-3);
+}
+.crest-corner { position: absolute; width: 14px; height: 14px; border: 1px solid var(--ink); }
+.crest-corner.tl { top: 10px; left: 10px; border-right: 0; border-bottom: 0; }
+.crest-corner.tr { top: 10px; right: 10px; border-left: 0; border-bottom: 0; }
+.crest-corner.bl { bottom: 10px; left: 10px; border-right: 0; border-top: 0; }
+.crest-corner.br { bottom: 10px; right: 10px; border-left: 0; border-top: 0; }
+body[data-ornaments="false"] .crest-corner { display: none; }
+body[data-ornaments="false"] .crest .crest-rule::before,
+body[data-ornaments="false"] .crest .crest-rule::after { display: none; }
+
+/* === Mood / Direction ============================================== */
+.principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.principle {
+  border-top: 1px solid var(--ink);
+  padding-top: 20px;
+}
+html[data-theme="dark"] .principle { border-top-color: var(--ink); }
+.principle .ord {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: var(--ink-3);
+  letter-spacing: 0.2em;
+  margin-bottom: 14px;
+}
+.principle h3 { margin-bottom: 12px; }
+.principle p { font-size: 15.5px; line-height: 1.55; }
+
+.moodboard { display: grid; grid-template-columns: 1.2fr 0.8fr 1fr; gap: 14px; margin-top: 56px; height: 280px; }
+.mood-tile { background: var(--paper-3); border: 1px solid var(--rule); border-radius: 18px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.mood-tile .ph {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  position: absolute;
+  top: 12px; left: 14px;
+}
+.mood-tile.swatch-primary { background: var(--primary); }
+.mood-tile.swatch-primary .ph { color: color-mix(in oklch, var(--primary-ink) 60%, transparent); }
+.mood-tile.swatch-primary .big-mono {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 100px;
+  color: var(--primary-ink);
+  line-height: 1;
+}
+.mood-tile.serif-quote {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 28px;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  justify-content: flex-end;
+}
+.mood-tile.serif-quote q {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 26px;
+  line-height: 1.25;
+  color: var(--ink);
+  quotes: "“" "”";
+}
+.mood-tile.serif-quote .attr {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-top: 14px;
+}
+.mood-tile.stripes {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--paper-3) 0 14px,
+    var(--paper-2) 14px 28px
+  );
+}
+
+/* === Logo applications ============================================== */
+.logo-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; }
+.logo-cell {
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--rule);
+  background: var(--paper-2);
+  border-radius: 18px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  padding: 18px;
+}
+.logo-cell .caption {
+  position: absolute;
+  bottom: 10px; left: 12px; right: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  display: flex; justify-content: space-between;
+}
+.logo-cell.span-2 { grid-column: span 2; aspect-ratio: 2 / 1; }
+.logo-cell.span-3 { grid-column: span 3; aspect-ratio: 3 / 1; }
+
+.l-mark { width: 60%; height: 60%; -webkit-mask: url(assets/logo.svg) center/contain no-repeat; mask: url(assets/logo.svg) center/contain no-repeat; }
+.l-mark.ink { background: var(--ink); }
+.l-mark.primary { background: var(--primary); }
+.l-mark.paper { background: var(--paper); }
+.l-mark.gold { background: var(--gold); }
+
+.logo-cell.on-ink { background: var(--ink); }
+.logo-cell.on-ink .caption { color: color-mix(in oklch, var(--paper) 50%, transparent); }
+.logo-cell.on-primary { background: var(--primary); }
+.logo-cell.on-primary .caption { color: color-mix(in oklch, var(--primary-ink) 60%, transparent); }
+.logo-cell.on-paper3 { background: var(--paper-3); }
+
+.lockup {
+  display: flex; align-items: center; gap: 16px;
+}
+.lockup .mark { width: 64px; height: 44px; -webkit-mask: url(assets/logo.svg) center/contain no-repeat; mask: url(assets/logo.svg) center/contain no-repeat; background: var(--ink); }
+.lockup .word { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 28px; letter-spacing: -0.01em; color: var(--ink); border-left: 1px solid var(--rule); padding-left: 16px; }
+.lockup .word small { display: block; font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 400; letter-spacing: 0.25em; color: var(--ink-3); text-transform: uppercase; margin-top: 2px; }
+
+.lockup.stacked { flex-direction: column; align-items: center; gap: 10px; }
+.lockup.stacked .word { border-left: 0; padding-left: 0; text-align: center; font-size: 20px; }
+.lockup.stacked .mark { width: 56px; height: 40px; }
+
+.favicon-mock {
+  width: 64px; height: 64px;
+  background: var(--ink);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.favicon-mock .mark { width: 70%; height: 70%; -webkit-mask: url(assets/logo.svg) center/contain no-repeat; mask: url(assets/logo.svg) center/contain no-repeat; background: var(--primary); }
+.favicon-mock.tile-primary { background: var(--primary); }
+.favicon-mock.tile-primary .mark { background: var(--paper); }
+
+/* === Color tokens ============================================== */
+.tokens-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.tokens-pair .pane {
+  border: 1px solid var(--rule);
+  border-radius: 22px;
+  padding: 32px;
+  background: var(--paper-2);
+}
+.tokens-pair .pane.dark { background: oklch(0.165 0.014 40); color: oklch(0.93 0.022 80); border-color: oklch(0.32 0.020 50); }
+.tokens-pair .pane.dark .swatch .name { color: oklch(0.93 0.022 80); }
+.tokens-pair .pane.dark .swatch .hex { color: oklch(0.6 0.018 70); }
+.tokens-pair .pane .pane-title {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 24px;
+}
+.tokens-pair .pane .pane-title h3 { margin: 0; }
+.pane .pane-title .tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  color: var(--ink-3);
+}
+.tokens-pair .pane.dark .pane-title .tag { color: oklch(0.6 0.018 70); }
+
+.swatch-list { display: grid; gap: 10px; }
+.swatch {
+  display: grid;
+  grid-template-columns: 56px 1fr auto auto;
+  gap: 14px;
+  align-items: center;
+  padding: 8px 0;
+}
+.swatch .chip {
+  width: 56px; height: 40px;
+  border: 1px solid color-mix(in oklch, currentColor 10%, transparent);
+  border-radius: 4px;
+}
+.swatch .name { font-family: 'Newsreader', serif; font-size: 15px; }
+.swatch .name small { display: block; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--ink-3); text-transform: uppercase; margin-top: 2px; }
+.swatch .hex { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-3); }
+.swatch .var { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-3); white-space: nowrap; }
+
+.shadcn-code {
+  margin-top: 28px;
+  padding: 20px 22px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  line-height: 1.7;
+  white-space: pre;
+  overflow-x: auto;
+  color: var(--ink-2);
+}
+.shadcn-code .k { color: var(--primary); }
+.shadcn-code .v { color: var(--ink); }
+.shadcn-code .c { color: var(--ink-3); font-style: italic; }
+
+/* === Typography scale ============================================== */
+.type-row {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 32px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: baseline;
+}
+.type-row .meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-3);
+  letter-spacing: 0.12em;
+  display: grid; gap: 4px;
+}
+.type-row .meta strong { color: var(--ink); font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; }
+.type-row .sample { color: var(--ink); }
+.type-h1 { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 72px; line-height: 1; letter-spacing: -0.02em; }
+.type-h2 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 48px; line-height: 1.05; letter-spacing: -0.018em; }
+.type-h3 { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 28px; line-height: 1.2; letter-spacing: -0.01em; }
+.type-h4 { font-family: 'Newsreader', serif; font-weight: 500; font-size: 20px; line-height: 1.3; }
+.type-body { font-family: 'Newsreader', serif; font-weight: 400; font-size: 17px; line-height: 1.55; }
+.type-small { font-family: 'Newsreader', serif; font-weight: 400; font-size: 14px; line-height: 1.55; }
+.type-label { font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--primary); }
+.type-num   { font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 44px; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+
+/* === Components (shadcn-style) ====================================== */
+.comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.comp-card {
+  border: 1px solid var(--rule);
+  background: var(--paper-2);
+  border-radius: 22px;
+  padding: 28px;
+}
+.comp-card .head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 22px; padding-bottom: 14px;
+  border-bottom: 1px dashed var(--rule);
+}
+.comp-card .head h4 { margin: 0; font-family: 'Playfair Display', serif; font-weight: 600; font-size: 18px; }
+.comp-card .head .tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-3); }
+.comp-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 12px; }
+
+/* Buttons */
+.btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 11px 22px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all .18s ease;
+  display: inline-flex; align-items: center; gap: 10px;
+  background: transparent;
+  color: var(--ink);
+}
+.btn.primary { background: var(--primary); color: var(--primary-ink); border-color: var(--primary); }
+.btn.primary:hover { background: color-mix(in oklch, var(--primary) 88%, black); }
+.btn.outline { border-color: var(--ink); color: var(--ink); }
+.btn.outline:hover { background: var(--ink); color: var(--paper); }
+.btn.ghost { color: var(--primary); }
+.btn.ghost:hover { background: var(--primary-soft); }
+.btn.lg { padding: 14px 28px; font-size: 13px; }
+.btn.sm { padding: 8px 14px; font-size: 11px; }
+.btn .arrow { font-size: 14px; transform: translateY(-1px); }
+
+/* Inputs */
+.field { display: grid; gap: 6px; max-width: 360px; }
+.field label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-3); }
+.field input, .field select {
+  font-family: 'Newsreader', serif;
+  font-size: 16px;
+  padding: 12px 16px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  color: var(--ink);
+  outline: none;
+  transition: border .2s ease, box-shadow .2s ease;
+}
+.field input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px color-mix(in oklch, var(--primary) 18%, transparent); }
+.field .hint { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--ink-3); letter-spacing: 0.08em; }
+
+/* Badges */
+.badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+  color: var(--ink-2);
+  background: var(--paper);
+}
+.badge.primary { color: var(--primary); border-color: color-mix(in oklch, var(--primary) 40%, transparent); background: var(--primary-soft); }
+.badge.positive { color: var(--positive); border-color: color-mix(in oklch, var(--positive) 40%, transparent); }
+.badge.negative { color: var(--negative); border-color: color-mix(in oklch, var(--negative) 40%, transparent); }
+.badge .dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+
+/* Card preview (a "shadcn card") */
+.preview-card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 18px;
+  padding: 22px;
+  display: grid; gap: 14px;
+  box-shadow: var(--shadow-vintage);
+}
+.preview-card .top-row { display: flex; justify-content: space-between; align-items: center; }
+.preview-card .label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-3); }
+.preview-card .value { font-family: 'JetBrains Mono', monospace; font-size: 38px; font-weight: 500; letter-spacing: -0.015em; color: var(--ink); font-variant-numeric: tabular-nums; }
+.preview-card .value small { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink-3); margin-left: 6px; font-weight: 400; }
+.preview-card .trend { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--positive); letter-spacing: 0.06em; }
+.preview-card .trend.down { color: var(--negative); }
+
+/* Avatars (multi-tenant) */
+.avatar {
+  border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: 1px solid var(--rule);
+  box-shadow: 0 0 0 3px var(--paper), 0 0 0 4px var(--rule);
+  position: relative;
+  background-clip: border-box;
+}
+.avatar.lg { width: 64px; height: 64px; font-size: 22px; }
+.avatar.md { width: 44px; height: 44px; font-size: 15px; }
+.avatar.sm { width: 28px; height: 28px; font-size: 11px; box-shadow: 0 0 0 2px var(--paper), 0 0 0 3px var(--rule); }
+.avatar.ink { background: var(--ink); color: var(--paper); }
+.avatar.primary { background: var(--primary); color: var(--primary-ink); }
+.avatar.paper { background: var(--paper-3); color: var(--ink); }
+.avatar.photo { overflow: hidden; }
+
+/* Tenant cards */
+.tenant-card {
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  border-radius: 16px;
+  padding: 16px;
+  display: grid; gap: 12px;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.tenant-card:hover { border-color: var(--ink-3); }
+.tenant-card.active {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+}
+.tenant-row { display: grid; grid-template-columns: 36px 1fr auto; gap: 10px; align-items: center; }
+.tenant-mark {
+  width: 36px; height: 36px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700; font-size: 14px;
+}
+.tenant-name { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 16px; color: var(--ink); line-height: 1.1; }
+.tenant-meta { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: var(--ink-3); text-transform: uppercase; margin-top: 2px; }
+.tenant-stats { display: flex; gap: 14px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--ink-3); padding-top: 10px; border-top: 1px dashed var(--rule); }
+.tenant-stats strong { color: var(--ink); font-weight: 500; }
+
+/* === Auth (login + register) ============================ */
+.auth-frame {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 720px;
+  border: 1px solid var(--rule);
+  border-radius: 28px;
+  overflow: hidden;
+  background: var(--paper);
+  box-shadow: var(--shadow-vintage);
+}
+
+/* Image side */
+.auth-art {
+  position: relative;
+  overflow: hidden;
+  color: oklch(0.95 0.02 80);
+  background: var(--ink);
+}
+.auth-art-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(110% 75% at 18% 12%, color-mix(in oklch, var(--primary) 65%, transparent) 0%, transparent 55%),
+    radial-gradient(85% 65% at 90% 100%, color-mix(in oklch, var(--gold) 35%, transparent) 0%, transparent 60%),
+    linear-gradient(160deg, oklch(0.28 0.04 40) 0%, oklch(0.18 0.025 35) 55%, oklch(0.12 0.02 30) 100%);
+}
+.auth-art-overlay {
+  position: absolute; inset: 0;
+  opacity: .35;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.95  0 0 0 0 0.85  0 0 0 0 0.7  0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+/* Subtle ledger guide lines */
+.auth-art::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: linear-gradient(transparent 38px, color-mix(in oklch, oklch(0.95 0.02 80) 8%, transparent) 38px, color-mix(in oklch, oklch(0.95 0.02 80) 8%, transparent) 39px, transparent 39px);
+  background-size: 100% 39px;
+  pointer-events: none;
+  z-index: 1;
+}
+.auth-art-content {
+  position: relative; z-index: 2;
+  height: 100%;
+  padding: 48px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.auth-brand { display: flex; align-items: center; gap: 14px; }
+.auth-mark {
+  width: 56px; height: 40px;
+  -webkit-mask: url(assets/logo.svg) center/contain no-repeat;
+          mask: url(assets/logo.svg) center/contain no-repeat;
+  background: oklch(0.95 0.02 80);
+}
+.auth-word {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: 0.01em;
+  color: oklch(0.95 0.02 80);
+}
+.auth-word small {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  color: oklch(0.7 0.04 80);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+.auth-quote {
+  max-width: 460px;
+  margin-bottom: 8px;
+}
+.auth-quote q {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(28px, 3.4vw, 44px);
+  line-height: 1.18;
+  letter-spacing: -0.012em;
+  color: oklch(0.96 0.02 80);
+  quotes: "“" "”";
+  display: block;
+}
+.auth-quote-attr {
+  display: block;
+  margin-top: 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: oklch(0.7 0.05 60);
+}
+.auth-marquee {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-top: 24px;
+  border-top: 1px solid color-mix(in oklch, oklch(0.95 0.02 80) 12%, transparent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: oklch(0.72 0.04 70);
+}
+.auth-marquee .dot-sep { color: var(--primary); font-size: 8px; }
+
+/* Form side */
+.auth-form-wrap {
+  background: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  position: relative;
+}
+.auth-form-inner {
+  width: 100%;
+  max-width: 420px;
+  display: flex; flex-direction: column;
+}
+.auth-tabs {
+  display: inline-flex;
+  background: var(--paper-2);
+  padding: 4px;
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+  margin-bottom: 32px;
+  align-self: flex-start;
+}
+.auth-tab {
+  appearance: none; border: 0; background: transparent;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  border-radius: 999px;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition: all .2s ease;
+  font-weight: 500;
+}
+.auth-tab.active {
+  background: var(--ink);
+  color: var(--paper);
+}
+.auth-pane { display: flex; flex-direction: column; gap: 14px; }
+.auth-pane[hidden] { display: none; }
+.auth-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(36px, 4vw, 48px);
+  line-height: 1.05;
+  letter-spacing: -0.018em;
+  margin: 0;
+}
+.auth-title em { font-style: italic; font-weight: 400; color: var(--primary); }
+.auth-sub {
+  margin: 0 0 14px;
+  color: var(--ink-3);
+  font-size: 15px;
+}
+.auth-link {
+  color: var(--primary);
+  font-family: 'Newsreader', serif;
+  font-size: 13px;
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in oklch, var(--primary) 40%, transparent);
+  font-style: italic;
+  transition: border-color .15s ease;
+}
+.auth-link:hover { border-bottom-color: var(--primary); }
+.auth-check {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Newsreader', serif;
+  font-size: 14px;
+  color: var(--ink-2);
+  cursor: pointer;
+  user-select: none;
+  margin: 4px 0;
+}
+.auth-check .check-box {
+  width: 18px; height: 18px;
+  border: 1px solid var(--ink-3);
+  border-radius: 5px;
+  background: var(--paper);
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: all .15s ease;
+}
+.auth-check input[type="checkbox"] { display: none; }
+.auth-check .check-mark {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--primary-ink);
+}
+.auth-check.unchecked .check-box { background: var(--paper); }
+.auth-check.unchecked .check-mark { opacity: 0; }
+.auth-check .check-box {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+.auth-submit {
+  margin-top: 10px;
+  width: 100%;
+  justify-content: center;
+  padding: 15px 22px !important;
+  font-size: 12px !important;
+}
+.auth-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 18px 0 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.auth-divider::before, .auth-divider::after {
+  content: ""; flex: 1; height: 1px; background: var(--rule);
+}
+.auth-social { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.auth-social-btn {
+  width: 100%;
+  justify-content: center;
+  padding: 12px 16px !important;
+  font-size: 11px !important;
+  letter-spacing: 0.12em !important;
+  text-transform: none !important;
+  font-family: 'Newsreader', serif !important;
+  font-weight: 500 !important;
+}
+.auth-social-btn .soc-ic {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 14px;
+}
+.auth-switch {
+  text-align: center;
+  margin-top: 18px;
+  font-family: 'Newsreader', serif;
+  font-size: 14px;
+  color: var(--ink-3);
+}
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.field-row .field { max-width: none; }
+.avatar-preview {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 16px;
+  background: var(--paper-2);
+  border: 1px dashed var(--rule);
+  border-radius: 16px;
+  margin: 2px 0 4px;
+}
+.avatar-preview-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 4px;
+}
+.avatar-preview-sub {
+  font-family: 'Newsreader', serif;
+  font-size: 13px;
+  color: var(--ink-2);
+  line-height: 1.4;
+}
+
+@media (max-width: 880px) {
+  .auth-frame { grid-template-columns: 1fr; min-height: auto; }
+  .auth-art { min-height: 320px; }
+  .auth-form-wrap { padding: 32px 24px; }
+  .field-row { grid-template-columns: 1fr; }
+}
+
+/* === Footer ============================================== */
+footer.colophon {
+  border-top: 1px solid var(--ink);
+  padding: 56px 0 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 32px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+footer.colophon h5 { margin: 0 0 14px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--ink); font-weight: 500; }
+footer.colophon ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+
+/* === Decorative ornaments ============================================== */
+.ornament {
+  display: flex; align-items: center; gap: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 40px;
+}
+.ornament::before, .ornament::after {
+  content: ""; height: 1px; background: var(--rule); flex: 1;
+}
+body[data-ornaments="false"] .ornament::before,
+body[data-ornaments="false"] .ornament::after { display: none; }
+
+.dash-host { margin-top: 56px; }
+
+@media (max-width: 960px) {
+  .shell { padding: 0 24px; }
+  .hero-grid, .tokens-pair, .comp-grid { grid-template-columns: 1fr; gap: 32px; }
+  .section-head { grid-template-columns: 1fr; gap: 8px; margin-bottom: 32px; }
+  .principles { grid-template-columns: 1fr; }
+  .logo-grid { grid-template-columns: repeat(2, 1fr); }
+  .logo-cell.span-2 { grid-column: span 2; aspect-ratio: 3/1; }
+  .logo-cell.span-3 { grid-column: span 2; aspect-ratio: 2/1; }
+}
+</style>
+</head>
+<body data-grain="true" data-ornaments="true">
+
+<!-- === Top bar =========================================== -->
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <div class="logo-mark" aria-hidden="true"></div>
+      <div class="brand-word">FrS Finance<small>SISTEMA · DOC v0.1</small></div>
+    </div>
+    <nav class="top-nav">
+      <a href="#fundamentos">Fundamentos</a>
+      <a href="#logo">Logo</a>
+      <a href="#cores">Cores</a>
+      <a href="#tipografia">Tipografia</a>
+      <a href="#componentes">Componentes</a>
+      <a href="#auth">Login</a>
+      <a href="#dashboard">Dashboard</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+      <span class="dot"></span>
+      <span id="themeLabel">LIGHT</span>
+    </button>
+  </div>
+</header>
+
+<main class="shell">
+
+  <!-- === Hero ============================================== -->
+  <section class="band hero" data-screen-label="01 Hero">
+    <span class="eyebrow">EST. MMXXVI · São Paulo · BR</span>
+    <div class="hero-grid" style="margin-top: 28px;">
+      <div>
+        <h1 class="display">Dinheiro<br />com <em>compostura</em>.</h1>
+        <p class="lead" style="margin-top: 32px; max-width: 52ch;">
+          A FrS Finance é um planejador financeiro pessoal de fidelidade premium: integra suas contas via API bancária, registra gastos por WhatsApp, e devolve a você uma única vista — saldo, crédito, investimentos e despesa — desenhada com a serenidade de um livro-razão e a fluidez de um produto contemporâneo.
+        </p>
+        <div style="display: flex; gap: 14px; margin-top: 36px;">
+          <button class="btn primary lg">Ver dashboard <span class="arrow">→</span></button>
+          <button class="btn outline lg">Tokens shadcn</button>
+        </div>
+      </div>
+      <aside class="crest">
+        <span class="crest-corner tl"></span><span class="crest-corner tr"></span>
+        <span class="crest-corner bl"></span><span class="crest-corner br"></span>
+        <span class="crest-tag">FrS · FINANCE</span>
+        <div class="lg-mark" aria-hidden="true"></div>
+        <div class="crest-rule"></div>
+        <span class="crest-year">Anno Domini · MMXXVI</span>
+      </aside>
+    </div>
+  </section>
+
+  <!-- === Fundamentos / Mood ============================== -->
+  <section id="fundamentos" class="band" data-screen-label="02 Fundamentos">
+    <div class="section-head">
+      <div class="num-label">§ 01 · Direção</div>
+      <div>
+        <h2>Vintage minimalista, com a calma de um <em style="color: var(--primary); font-style: italic;">private banking</em>.</h2>
+        <p style="margin-top: 16px;">
+          Três princípios guiam a marca. Eles atravessam tipografia, cor, espaçamento, microcopy e até o ritmo das animações.
+        </p>
+      </div>
+    </div>
+
+    <div class="principles">
+      <article class="principle">
+        <div class="ord">i.</div>
+        <h3>Discrição</h3>
+        <p>Um produto financeiro confiável raramente grita. Cores em sépia e terracota substituem azuis-corporativos saturados; tipografia clássica em vez de display tech. Confiança vem do silêncio do papel.</p>
+      </article>
+      <article class="principle">
+        <div class="ord">ii.</div>
+        <h3>Precisão</h3>
+        <p>Cada número usa monoespaçada com numerais tabulares — colunas alinhadas, leitura sem ruído. Hairlines de 1px, grade rígida, ornamentos discretos. O design serve à conta, não o contrário.</p>
+      </article>
+      <article class="principle">
+        <div class="ord">iii.</div>
+        <h3>Continuidade</h3>
+        <p>O sistema é o mesmo no web, no mobile e nas mensagens de WhatsApp. Um único vocabulário visual entre o gesto de registrar uma compra e a vista global do patrimônio.</p>
+      </article>
+    </div>
+
+    <div class="moodboard">
+      <div class="mood-tile swatch-primary">
+        <span class="ph">PRIMARY · TERRACOTA</span>
+        <span class="big-mono">F</span>
+      </div>
+      <div class="mood-tile serif-quote">
+        <q>Money is a kind of poetry.</q>
+        <span class="attr">— Wallace Stevens</span>
+      </div>
+      <div class="mood-tile stripes">
+        <span class="ph">PAPER · GRAIN</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Logo ============================================== -->
+  <section id="logo" class="band" data-screen-label="03 Logo">
+    <div class="section-head">
+      <div class="num-label">§ 02 · Logo</div>
+      <div>
+        <h2>Marca, lockup e <em>aplicações</em>.</h2>
+        <p style="margin-top: 16px;">A marca FrS é compacta e simétrica — funciona como monograma em favicons de 16px ou como brasão em cabeçalhos de extrato. Use sempre com respiro mínimo equivalente à altura do "r".</p>
+      </div>
+    </div>
+
+    <div class="ornament">Aplicações primárias</div>
+
+    <div class="logo-grid">
+      <div class="logo-cell">
+        <div class="l-mark ink" style="width:62%;height:62%"></div>
+        <div class="caption"><span>01 · Ink</span><span>1×</span></div>
+      </div>
+      <div class="logo-cell">
+        <div class="l-mark primary" style="width:62%;height:62%"></div>
+        <div class="caption"><span>02 · Primary</span><span>1×</span></div>
+      </div>
+      <div class="logo-cell on-ink">
+        <div class="l-mark paper" style="width:62%;height:62%"></div>
+        <div class="caption"><span>03 · Reverse</span><span>1×</span></div>
+      </div>
+      <div class="logo-cell on-primary">
+        <div class="l-mark paper" style="width:62%;height:62%"></div>
+        <div class="caption"><span>04 · On primary</span><span>1×</span></div>
+      </div>
+      <div class="logo-cell on-paper3">
+        <div class="l-mark gold" style="width:62%;height:62%"></div>
+        <div class="caption"><span>05 · Brass</span><span>uso especial</span></div>
+      </div>
+      <div class="logo-cell">
+        <div class="l-mark ink" style="width:30%;height:30%"></div>
+        <div class="caption"><span>06 · Min size</span><span>16px</span></div>
+      </div>
+
+      <div class="logo-cell span-3">
+        <div class="lockup">
+          <div class="mark"></div>
+          <div class="word">FrS Finance<small>Planejador · BR</small></div>
+        </div>
+        <div class="caption"><span>07 · Lockup horizontal</span><span>preferido</span></div>
+      </div>
+      <div class="logo-cell span-3">
+        <div class="lockup stacked">
+          <div class="mark"></div>
+          <div class="word">FrS Finance<small>Anno · MMXXVI</small></div>
+        </div>
+        <div class="caption"><span>08 · Lockup empilhado</span><span>secundário</span></div>
+      </div>
+
+      <div class="logo-cell">
+        <div class="favicon-mock"><div class="mark"></div></div>
+        <div class="caption"><span>09 · App icon</span><span>iOS / Android</span></div>
+      </div>
+      <div class="logo-cell">
+        <div class="favicon-mock tile-primary"><div class="mark"></div></div>
+        <div class="caption"><span>10 · App icon · alt</span><span>primary</span></div>
+      </div>
+      <div class="logo-cell on-ink">
+        <div class="favicon-mock" style="background: var(--paper); border-radius: 8px; width: 36px; height: 36px;"><div class="mark" style="background: var(--ink); width: 70%; height: 70%;"></div></div>
+        <div class="caption"><span>11 · Avatar</span><span>chat WA</span></div>
+      </div>
+      <div class="logo-cell">
+        <div style="font-family: 'Playfair Display', serif; font-size: 11px; letter-spacing: 0.06em; color: var(--ink); display: grid; gap: 6px; text-align: left; align-self: stretch; padding-top: 8px;">
+          <strong style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: var(--ink-3); text-transform: uppercase;">Email signature</strong>
+          <div style="display:flex; gap: 10px; margin-top: 8px;">
+            <div class="l-mark ink" style="width: 36px; height: 24px;"></div>
+            <div>
+              <div style="font-weight: 600;">João Pessoa</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: var(--ink-3);">CFO · frs.finance</div>
+            </div>
+          </div>
+        </div>
+        <div class="caption"><span>12 · Assinatura</span><span>email</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Cores ============================================== -->
+  <section id="cores" class="band" data-screen-label="04 Cores">
+    <div class="section-head">
+      <div class="num-label">§ 03 · Cores</div>
+      <div>
+        <h2>Paleta sépia + <em>terracota</em>.</h2>
+        <p style="margin-top: 16px;">Tons quentes neutros (papel, tinta, hairline) compõem a base. Um único acento — terracota — carrega ações primárias e identidade. Verdigris e oxblood marcam ganhos e despesas. Todos os tokens estão expressos em <span class="mono" style="color: var(--primary);">oklch()</span> para garantir contraste estável e suaves transições entre os modos.</p>
+      </div>
+    </div>
+
+    <div class="tokens-pair">
+      <div class="pane">
+        <div class="pane-title"><h3>Light · papel</h3><span class="tag">Default</span></div>
+        <div class="swatch-list">
+          <div class="swatch"><div class="chip" style="background: var(--paper)"></div><div class="name">Paper<small>Background</small></div><div class="hex">#FAF6EE</div><div class="var">--background</div></div>
+          <div class="swatch"><div class="chip" style="background: var(--paper-2)"></div><div class="name">Paper 2<small>Card / Muted</small></div><div class="hex">#F0E9D8</div><div class="var">--card</div></div>
+          <div class="swatch"><div class="chip" style="background: var(--paper-3)"></div><div class="name">Paper 3<small>Accent BG</small></div><div class="hex">#E5DBC2</div><div class="var">--accent</div></div>
+          <div class="swatch"><div class="chip" style="background: var(--ink)"></div><div class="name">Ink<small>Foreground</small></div><div class="hex">#2B1F15</div><div class="var">--foreground</div></div>
+          <div class="swatch"><div class="chip" style="background: var(--ink-2)"></div><div class="name">Ink 2<small>Muted FG</small></div><div class="hex">#574536</div><div class="var">--muted-fg</div></div>
+          <div class="swatch"><div class="chip" style="background: var(--ink-3)"></div><div class="name">Ink 3<small>Tertiary</small></div><div class="hex">#83705E</div><div class="var">--ink-3</div></div>
+          <div class="swatch"><div class="chip" style="background: var(--primary)"></div><div class="name">Terracota<small>Primary</small></div><div class="hex">#9A4A1F</div><div class="var">--primary</div></div>
+          <div class="swatch"><div class="chip" style="background: var(--primary-soft)"></div><div class="name">Terracota Soft<small>Tinted surface</small></div><div class="hex">#EEDFC9</div><div class="var">--primary-soft</div></div>
+          <div class="swatch"><div class="chip" style="background: var(--positive)"></div><div class="name">Verdigris<small>Positive · gains</small></div><div class="hex">#3C6C3F</div><div class="var">--positive</div></div>
+          <div class="swatch"><div class="chip" style="background: var(--negative)"></div><div class="name">Oxblood<small>Negative · expense</small></div><div class="hex">#9B3A24</div><div class="var">--negative</div></div>
+          <div class="swatch"><div class="chip" style="background: var(--gold)"></div><div class="name">Aged Brass<small>Gold accent</small></div><div class="hex">#C39A4A</div><div class="var">--gold</div></div>
+        </div>
+      </div>
+
+      <div class="pane dark">
+        <div class="pane-title"><h3 style="color: oklch(0.93 0.022 80);">Dark · couro</h3><span class="tag">Worn leather</span></div>
+        <div class="swatch-list">
+          <div class="swatch"><div class="chip" style="background: oklch(0.165 0.014 40)"></div><div class="name">Coffee<small>Background</small></div><div class="hex">#231911</div><div class="var">--background</div></div>
+          <div class="swatch"><div class="chip" style="background: oklch(0.205 0.018 42)"></div><div class="name">Coffee 2<small>Card</small></div><div class="hex">#2D2118</div><div class="var">--card</div></div>
+          <div class="swatch"><div class="chip" style="background: oklch(0.245 0.022 44)"></div><div class="name">Coffee 3<small>Accent</small></div><div class="hex">#392A1E</div><div class="var">--accent</div></div>
+          <div class="swatch"><div class="chip" style="background: oklch(0.93 0.022 80)"></div><div class="name">Bone<small>Foreground</small></div><div class="hex">#EDE3D0</div><div class="var">--foreground</div></div>
+          <div class="swatch"><div class="chip" style="background: oklch(0.78 0.02 75)"></div><div class="name">Bone 2<small>Muted FG</small></div><div class="hex">#C5B8A2</div><div class="var">--muted-fg</div></div>
+          <div class="swatch"><div class="chip" style="background: oklch(0.6 0.018 70)"></div><div class="name">Bone 3<small>Tertiary</small></div><div class="hex">#94866F</div><div class="var">--ink-3</div></div>
+          <div class="swatch"><div class="chip" style="background: oklch(0.7 0.13 50)"></div><div class="name">Terracota<small>Primary</small></div><div class="hex">#D17A47</div><div class="var">--primary</div></div>
+          <div class="swatch"><div class="chip" style="background: oklch(0.28 0.05 50)"></div><div class="name">Terracota Soft<small>Tinted</small></div><div class="hex">#42291C</div><div class="var">--primary-soft</div></div>
+          <div class="swatch"><div class="chip" style="background: oklch(0.68 0.085 145)"></div><div class="name">Verdigris<small>Positive</small></div><div class="hex">#7BAA7E</div><div class="var">--positive</div></div>
+          <div class="swatch"><div class="chip" style="background: oklch(0.68 0.13 28)"></div><div class="name">Oxblood<small>Negative</small></div><div class="hex">#D87C5E</div><div class="var">--negative</div></div>
+          <div class="swatch"><div class="chip" style="background: oklch(0.78 0.1 80)"></div><div class="name">Aged Brass<small>Gold</small></div><div class="hex">#D9B36C</div><div class="var">--gold</div></div>
+        </div>
+      </div>
+    </div>
+
+    <pre class="shadcn-code">
+<span class="c">/* app/globals.css — shadcn tokens, light + dark */</span>
+<span class="k">:root</span> {
+  <span class="k">--background</span>: <span class="v">oklch(0.965 0.012 78)</span>;   <span class="c">/* paper */</span>
+  <span class="k">--foreground</span>: <span class="v">oklch(0.215 0.022 50)</span>;   <span class="c">/* ink */</span>
+  <span class="k">--card</span>:       <span class="v">oklch(0.945 0.018 75)</span>;
+  <span class="k">--card-foreground</span>: <span class="v">oklch(0.215 0.022 50)</span>;
+  <span class="k">--popover</span>:    <span class="v">oklch(0.965 0.012 78)</span>;
+  <span class="k">--popover-foreground</span>: <span class="v">oklch(0.215 0.022 50)</span>;
+  <span class="k">--primary</span>:    <span class="v">oklch(0.48 0.135 45)</span>;     <span class="c">/* terracota */</span>
+  <span class="k">--primary-foreground</span>: <span class="v">oklch(0.972 0.018 80)</span>;
+  <span class="k">--secondary</span>:  <span class="v">oklch(0.915 0.024 72)</span>;
+  <span class="k">--secondary-foreground</span>: <span class="v">oklch(0.215 0.022 50)</span>;
+  <span class="k">--muted</span>:      <span class="v">oklch(0.945 0.018 75)</span>;
+  <span class="k">--muted-foreground</span>: <span class="v">oklch(0.52 0.022 55)</span>;
+  <span class="k">--accent</span>:     <span class="v">oklch(0.92 0.04 50)</span>;
+  <span class="k">--accent-foreground</span>: <span class="v">oklch(0.215 0.022 50)</span>;
+  <span class="k">--destructive</span>: <span class="v">oklch(0.42 0.13 25)</span>;     <span class="c">/* oxblood */</span>
+  <span class="k">--destructive-foreground</span>: <span class="v">oklch(0.972 0.018 80)</span>;
+  <span class="k">--border</span>:     <span class="v">oklch(0.85 0.022 70)</span>;
+  <span class="k">--input</span>:      <span class="v">oklch(0.85 0.022 70)</span>;
+  <span class="k">--ring</span>:       <span class="v">oklch(0.48 0.135 45)</span>;
+  <span class="k">--radius</span>:     <span class="v">0.125rem</span>;                  <span class="c">/* 2px — quase reto, livro-razão */</span>
+}
+<span class="k">.dark</span> {
+  <span class="k">--background</span>: <span class="v">oklch(0.165 0.014 40)</span>;   <span class="c">/* worn coffee */</span>
+  <span class="k">--foreground</span>: <span class="v">oklch(0.93 0.022 80)</span>;
+  <span class="k">--card</span>:       <span class="v">oklch(0.205 0.018 42)</span>;
+  <span class="k">--primary</span>:    <span class="v">oklch(0.70 0.13 50)</span>;
+  <span class="k">--primary-foreground</span>: <span class="v">oklch(0.155 0.018 40)</span>;
+  <span class="k">--muted-foreground</span>: <span class="v">oklch(0.78 0.02 75)</span>;
+  <span class="k">--border</span>:     <span class="v">oklch(0.32 0.02 50)</span>;
+  <span class="k">--ring</span>:       <span class="v">oklch(0.70 0.13 50)</span>;
+}</pre>
+  </section>
+
+  <!-- === Tipografia ============================================== -->
+  <section id="tipografia" class="band" data-screen-label="05 Tipografia">
+    <div class="section-head">
+      <div class="num-label">§ 04 · Tipografia</div>
+      <div>
+        <h2>Playfair, Newsreader, JetBrains <em>Mono</em>.</h2>
+        <p style="margin-top: 16px;">Três famílias só. <strong style="color: var(--ink);">Playfair Display</strong> para títulos com presença editorial; <strong style="color: var(--ink);">Newsreader</strong> para corpo de texto com optical sizing; <strong style="color: var(--ink);">JetBrains Mono</strong> para qualquer número (numerais tabulares), label institucional e código.</p>
+      </div>
+    </div>
+
+    <div class="type-row">
+      <div class="meta"><strong>Display</strong><span>Playfair · 800 · 72px / 1.0</span><span>tracking −0.02em</span></div>
+      <div class="type-h1 sample">Saldo consolidado <em style="color: var(--primary); font-style: italic; font-weight: 400;">do trimestre</em></div>
+    </div>
+    <div class="type-row">
+      <div class="meta"><strong>H2</strong><span>Playfair · 700 · 48px / 1.05</span></div>
+      <div class="type-h2 sample">Investimentos e crédito</div>
+    </div>
+    <div class="type-row">
+      <div class="meta"><strong>H3</strong><span>Playfair · 600 · 28px / 1.2</span></div>
+      <div class="type-h3 sample">Conexões bancárias ativas</div>
+    </div>
+    <div class="type-row">
+      <div class="meta"><strong>H4 / Subhead</strong><span>Newsreader · 500 · 20px / 1.3</span></div>
+      <div class="type-h4 sample">Você registrou 14 movimentos esta semana pelo WhatsApp.</div>
+    </div>
+    <div class="type-row">
+      <div class="meta"><strong>Body</strong><span>Newsreader · 400 · 17px / 1.55</span></div>
+      <div class="type-body sample">O FrS lê suas contas via Open Finance, reconcilia o cartão de crédito automaticamente e devolve, ao final do mês, um extrato em forma de livro-razão — com sua categoria, sua nota e sua intenção. Tudo navegável a partir de uma única vista.</div>
+    </div>
+    <div class="type-row">
+      <div class="meta"><strong>Small / Caption</strong><span>Newsreader · 400 · 14px</span></div>
+      <div class="type-small sample">Atualizado em 27 Mai · 14:42 — última sincronização com Nubank, Itaú e XP Investimentos.</div>
+    </div>
+    <div class="type-row">
+      <div class="meta"><strong>Label / Eyebrow</strong><span>JetBrains Mono · 500 · 11px</span><span>tracking 0.22em · UPPER</span></div>
+      <div class="type-label sample">SALDO DISPONÍVEL · CONTA CORRENTE</div>
+    </div>
+    <div class="type-row" style="border-bottom: 0;">
+      <div class="meta"><strong>Numeric</strong><span>JetBrains Mono · 500 · tabular</span><span>destaque financeiro</span></div>
+      <div class="type-num sample">R$ 184.327<span style="font-size: 24px; color: var(--ink-3);">,42</span></div>
+    </div>
+  </section>
+
+  <!-- === Componentes ============================================== -->
+  <section id="componentes" class="band" data-screen-label="06 Componentes">
+    <div class="section-head">
+      <div class="num-label">§ 05 · Componentes</div>
+      <div>
+        <h2>shadcn, recalibrado com <em>respiro</em>.</h2>
+        <p style="margin-top: 16px;">Mesmos componentes do shadcn, com radius mínimo (2px), bordas hairline e tipografia de label em monoespaçada. Os primitivos abaixo são o vocabulário comum de toda a interface.</p>
+      </div>
+    </div>
+
+    <div class="comp-grid">
+      <div class="comp-card">
+        <div class="head"><h4>Button</h4><span class="tag">Variants · 3 + sizes · 3</span></div>
+        <div class="comp-row">
+          <button class="btn primary">Sincronizar agora <span class="arrow">→</span></button>
+          <button class="btn outline">Cancelar</button>
+          <button class="btn ghost">Saiba mais</button>
+        </div>
+        <div class="comp-row">
+          <button class="btn primary lg">Conectar banco</button>
+          <button class="btn outline lg">Importar OFX</button>
+        </div>
+        <div class="comp-row">
+          <button class="btn primary sm">+ adicionar</button>
+          <button class="btn outline sm">editar</button>
+          <button class="btn ghost sm">remover</button>
+        </div>
+      </div>
+
+      <div class="comp-card">
+        <div class="head"><h4>Badge</h4><span class="tag">5 estados</span></div>
+        <div class="comp-row">
+          <span class="badge primary"><span class="dot"></span>Premium</span>
+          <span class="badge positive"><span class="dot"></span>+ 2,4 %</span>
+          <span class="badge negative"><span class="dot"></span>− 184,90</span>
+          <span class="badge">Cartão de crédito</span>
+          <span class="badge">Investimento</span>
+        </div>
+        <div class="comp-row">
+          <span class="badge primary">PIX recebido</span>
+          <span class="badge">Whatsapp · 2 min atrás</span>
+          <span class="badge positive">Conciliado</span>
+        </div>
+      </div>
+
+      <div class="comp-card">
+        <div class="head"><h4>Input</h4><span class="tag">Field · Label · Hint</span></div>
+        <div style="display: grid; gap: 16px;">
+          <div class="field">
+            <label>Valor do gasto</label>
+            <input type="text" value="R$ 384,90" />
+            <span class="hint">Insira ou registre via WhatsApp · /gasto 384,90 mercado</span>
+          </div>
+          <div class="field">
+            <label>Categoria</label>
+            <select><option>Alimentação · Supermercado</option><option>Transporte · Combustível</option></select>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-card">
+        <div class="head"><h4>Card · KPI</h4><span class="tag">Dashboard primitive</span></div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <div class="preview-card">
+            <div class="top-row"><span class="label">Saldo total</span><span class="badge positive"><span class="dot"></span>+1,8%</span></div>
+            <div class="value">R$ 184.327<small>,42</small></div>
+            <div class="trend">↗ +R$ 3.214 vs. mês passado</div>
+          </div>
+          <div class="preview-card">
+            <div class="top-row"><span class="label">Crédito usado</span><span class="badge negative"><span class="dot"></span>62%</span></div>
+            <div class="value">R$ 4.812<small>,00</small></div>
+            <div class="trend down">↘ Fatura fecha em 8 dias</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ornament" style="margin-top: 56px;">Multi-tenant · Avatar &amp; iniciais</div>
+
+    <div class="comp-grid">
+      <div class="comp-card">
+        <div class="head"><h4>Avatar · sem foto</h4><span class="tag">fallback iniciais</span></div>
+        <p style="font-size: 14px; color: var(--ink-3); margin-bottom: 18px;">No primeiro acesso, antes de o usuário enviar uma foto, o avatar mostra as iniciais do <strong style="color: var(--ink);">nome</strong> e <strong style="color: var(--ink);">sobrenome</strong> em <span class="mono" style="color: var(--primary);">Playfair Display</span> sobre fundo ink. A regra é simples: <span class="mono">[primeiroNome[0] + ultimoNome[0]].toUpperCase()</span>.</p>
+        <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+          <div class="avatar lg ink">JP</div>
+          <div class="avatar lg primary">MH</div>
+          <div class="avatar lg paper">LV</div>
+          <div class="avatar md ink">RN</div>
+          <div class="avatar md primary">AS</div>
+          <div class="avatar sm ink">TC</div>
+          <div class="avatar sm primary">BO</div>
+        </div>
+        <div style="margin-top: 18px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--ink-3); text-transform: uppercase; display: flex; gap: 24px;">
+          <span>64 · 40 · 28 px</span><span>border-radius · 50%</span><span>ring · 1px rule</span>
+        </div>
+      </div>
+
+      <div class="comp-card">
+        <div class="head"><h4>Avatar · com foto</h4><span class="tag">após upload</span></div>
+        <p style="font-size: 14px; color: var(--ink-3); margin-bottom: 18px;">Quando o usuário sobe uma foto, ela substitui as iniciais. A borda hairline e o "halo" de papel permanecem — preservando a presença visual mesmo em fotos de tons quentes.</p>
+        <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+          <div class="avatar lg photo" style="background: linear-gradient(135deg, oklch(0.65 0.09 50), oklch(0.45 0.13 35));">
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: rgba(255,255,255,0.8); position: absolute; bottom: 8px;">FOTO</span>
+          </div>
+          <div class="avatar lg photo" style="background: linear-gradient(135deg, oklch(0.55 0.07 145), oklch(0.35 0.05 165));">
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: rgba(255,255,255,0.8); position: absolute; bottom: 8px;">FOTO</span>
+          </div>
+          <div class="avatar lg photo" style="background: linear-gradient(135deg, oklch(0.5 0.06 280), oklch(0.3 0.07 270));">
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: rgba(255,255,255,0.8); position: absolute; bottom: 8px;">FOTO</span>
+          </div>
+          <div class="avatar md photo" style="background: linear-gradient(135deg, oklch(0.45 0.12 25), oklch(0.3 0.1 15));"></div>
+          <div class="avatar md photo" style="background: linear-gradient(135deg, oklch(0.6 0.05 80), oklch(0.4 0.04 70));"></div>
+        </div>
+        <div style="margin-top: 18px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--ink-3); text-transform: uppercase;">
+          <span>upload PNG / JPG · ≤ 4 MB · cropping circular automático</span>
+        </div>
+      </div>
+
+      <div class="comp-card" style="grid-column: span 2;">
+        <div class="head"><h4>Tenant switcher</h4><span class="tag">Cada cliente · sua conta · seus dados</span></div>
+        <p style="font-size: 14px; color: var(--ink-3); margin-bottom: 22px; max-width: 70ch;">A FrS é multi-tenant: cada cliente acessa apenas o que é seu (login por e-mail, escopo isolado no PostgreSQL via <span class="mono" style="color: var(--primary);">row-level security</span>). O switcher no canto superior esquerdo da sidebar deixa visível o tenant ativo. Convites de terceiros (planejador, contador) aparecem aqui como tenants adicionais, com selo do papel.</p>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;">
+          <div class="tenant-card active">
+            <div class="tenant-row">
+              <div class="tenant-mark" style="background: var(--primary); color: var(--primary-ink);">AC</div>
+              <div>
+                <div class="tenant-name">ACME</div>
+                <div class="tenant-meta">tenant pessoal</div>
+              </div>
+              <span class="badge primary">OWNER</span>
+            </div>
+            <div class="tenant-stats">
+              <span><strong>3</strong> contas</span>
+              <span><strong>12</strong> investimentos</span>
+              <span><strong>184</strong> mov.</span>
+            </div>
+          </div>
+          <div class="tenant-card">
+            <div class="tenant-row">
+              <div class="tenant-mark" style="background: var(--paper-3); color: var(--ink);">HC</div>
+              <div>
+                <div class="tenant-name">Helena &amp; Co.</div>
+                <div class="tenant-meta">empresa</div>
+              </div>
+              <span class="badge">EDITOR</span>
+            </div>
+            <div class="tenant-stats">
+              <span><strong>2</strong> contas</span>
+              <span><strong>4</strong> investimentos</span>
+              <span><strong>62</strong> mov.</span>
+            </div>
+          </div>
+          <div class="tenant-card">
+            <div class="tenant-row">
+              <div class="tenant-mark" style="background: var(--paper-3); color: var(--ink);">FA</div>
+              <div>
+                <div class="tenant-name">Família</div>
+                <div class="tenant-meta">compartilhado · 4 membros</div>
+              </div>
+              <span class="badge">VIEWER</span>
+            </div>
+            <div class="tenant-stats">
+              <span><strong>5</strong> contas</span>
+              <span><strong>—</strong></span>
+              <span><strong>320</strong> mov.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Auth (Login + Register) ============================================== -->
+  <section id="auth" class="band" data-screen-label="07 Auth">
+    <div class="section-head">
+      <div class="num-label">§ 06 · Autenticação</div>
+      <div>
+        <h2>Entrar &amp; <em>criar conta</em>.</h2>
+        <p style="margin-top: 16px;">Duas telas com a mesma anatomia: 50% imagem editorial à esquerda (com selo da marca e citação), 50% formulário à direita. Cada cliente acessa apenas seu próprio tenant; o registro coleta nome completo para gerar as iniciais do avatar.</p>
+      </div>
+    </div>
+
+    <div class="ornament">Sign in · frs.finance / entrar</div>
+
+    <div class="auth-frame">
+      <aside class="auth-art">
+        <div class="auth-art-bg"></div>
+        <div class="auth-art-overlay"></div>
+        <div class="auth-art-content">
+          <div class="auth-brand">
+            <div class="auth-mark"></div>
+            <div class="auth-word">FrS Finance<small>Planejador · MMXXVI</small></div>
+          </div>
+          <div class="auth-quote">
+            <q>O patrimônio se conserva mais pela atenção diária do que pelo grande lance.</q>
+            <span class="auth-quote-attr">— Cadástro pessoal de F.S., 1928</span>
+          </div>
+          <div class="auth-marquee">
+            <span>SP · BR</span>
+            <span class="dot-sep">◆</span>
+            <span>OPEN FINANCE</span>
+            <span class="dot-sep">◆</span>
+            <span>SSL · 256</span>
+            <span class="dot-sep">◆</span>
+            <span>v0.1</span>
+          </div>
+        </div>
+      </aside>
+
+      <div class="auth-form-wrap">
+        <div class="auth-form-inner">
+          <div class="auth-tabs">
+            <button class="auth-tab active" data-tab="login">Entrar</button>
+            <button class="auth-tab" data-tab="register">Criar conta</button>
+          </div>
+
+          <!-- LOGIN -->
+          <div class="auth-pane" data-pane="login">
+            <span class="eyebrow" style="margin-bottom: 18px;">Bem-vindo de volta</span>
+            <h1 class="auth-title">Entre na sua <em>conta</em>.</h1>
+            <p class="auth-sub">Conecte-se para ver saldo, crédito e investimentos consolidados.</p>
+
+            <div class="field">
+              <label>E-mail</label>
+              <input type="email" value="joao.pessoa@acme.com" />
+            </div>
+            <div class="field">
+              <label style="display: flex; justify-content: space-between; align-items: center;"><span>Senha</span><a href="#" class="auth-link">Esqueceu?</a></label>
+              <input type="password" value="••••••••••" />
+            </div>
+            <label class="auth-check">
+              <span class="check-box"><span class="check-mark">✓</span></span>
+              <span>Manter conectado neste dispositivo</span>
+            </label>
+            <button class="btn primary lg auth-submit">Entrar <span class="arrow">→</span></button>
+
+            <div class="auth-divider"><span>ou continue com</span></div>
+            <div class="auth-social">
+              <button class="btn outline auth-social-btn"><span class="soc-ic">G</span>Google</button>
+              <button class="btn outline auth-social-btn"><span class="soc-ic"></span>Apple</button>
+            </div>
+            <p class="auth-switch">Não tem conta? <a href="#" class="auth-link" data-switch="register">Crie a sua →</a></p>
+          </div>
+
+          <!-- REGISTER -->
+          <div class="auth-pane" data-pane="register" hidden>
+            <span class="eyebrow" style="margin-bottom: 18px;">Comece em 60 segundos</span>
+            <h1 class="auth-title">Crie sua <em>conta</em>.</h1>
+            <p class="auth-sub">Nome completo gera suas iniciais no avatar. Você pode trocar por uma foto depois.</p>
+
+            <div class="field-row">
+              <div class="field">
+                <label>Nome</label>
+                <input type="text" value="João" id="reg-first" />
+              </div>
+              <div class="field">
+                <label>Sobrenome</label>
+                <input type="text" value="Pessoa" id="reg-last" />
+              </div>
+            </div>
+
+            <!-- Live initials preview -->
+            <div class="avatar-preview">
+              <div class="avatar lg ink" id="reg-avatar">JP</div>
+              <div>
+                <div class="avatar-preview-title">Avatar inicial</div>
+                <div class="avatar-preview-sub">Gerado das iniciais. Você pode <a href="#" class="auth-link">enviar uma foto</a> após o cadastro.</div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>E-mail</label>
+              <input type="email" placeholder="você@empresa.com" />
+            </div>
+            <div class="field">
+              <label>Senha</label>
+              <input type="password" placeholder="Mínimo 8 caracteres" />
+              <span class="hint">Letras, números e ao menos um símbolo.</span>
+            </div>
+            <label class="auth-check">
+              <span class="check-box"><span class="check-mark">✓</span></span>
+              <span>Aceito os <a href="#" class="auth-link">Termos</a> e a <a href="#" class="auth-link">Política de privacidade</a></span>
+            </label>
+            <button class="btn primary lg auth-submit">Criar conta <span class="arrow">→</span></button>
+
+            <div class="auth-divider"><span>ou cadastre-se com</span></div>
+            <div class="auth-social">
+              <button class="btn outline auth-social-btn"><span class="soc-ic">G</span>Google</button>
+              <button class="btn outline auth-social-btn"><span class="soc-ic"></span>Apple</button>
+            </div>
+            <p class="auth-switch">Já tem uma conta? <a href="#" class="auth-link" data-switch="login">Entrar →</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- === Dashboard preview ============================================== -->
+  <section id="dashboard" class="band" data-screen-label="08 Dashboard">
+    <div class="section-head">
+      <div class="num-label">§ 07 · Aplicação</div>
+      <div>
+        <h2>Vista única do <em>patrimônio</em>.</h2>
+        <p style="margin-top: 16px;">Aplicação do sistema em uma tela real do produto: saldo, crédito, investimentos, despesas e o feed de movimentos registrados via WhatsApp. Use a alavanca de tema no topo para alternar light/dark.</p>
+      </div>
+    </div>
+    <div id="dashRoot" class="dash-host"></div>
+  </section>
+
+  <footer class="colophon">
+    <div>
+      <h5>FrS Finance</h5>
+      <ul>
+        <li>Sistema de identidade</li>
+        <li>Versão 0.1 · Maio 2026</li>
+        <li>São Paulo · BR</li>
+      </ul>
+    </div>
+    <div>
+      <h5>Stack alvo</h5>
+      <ul>
+        <li>Next.js · TypeScript</li>
+        <li>shadcn/ui · Tailwind</li>
+        <li>Node · pnpm · PostgreSQL</li>
+        <li>Open Finance · WhatsApp Business API</li>
+      </ul>
+    </div>
+    <div>
+      <h5>Próximos passos</h5>
+      <ul>
+        <li>i. Definir voz e microcopy</li>
+        <li>ii. Refinar tabela e gráficos</li>
+        <li>iii. Templates de mensagem WA</li>
+        <li>iv. Onboarding (3 telas)</li>
+      </ul>
+    </div>
+  </footer>
+</main>
+
+<!-- React + Babel for dashboard + tweaks -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script>
+/* Theme + palette state (vanilla, before React mounts) */
+(function(){
+  const root = document.documentElement;
+  const body = document.body;
+  const cfg = window.FRS_TWEAK_DEFAULTS || {};
+  root.setAttribute('data-theme', cfg.theme || 'light');
+  root.setAttribute('data-palette', cfg.palette || 'terracota');
+  body.setAttribute('data-grain', String(cfg.grain !== false));
+  body.setAttribute('data-ornaments', String(cfg.ornaments !== false));
+
+  const btn = document.getElementById('themeToggle');
+  const label = document.getElementById('themeLabel');
+  function syncLabel(){ label.textContent = (root.getAttribute('data-theme') === 'dark') ? 'DARK' : 'LIGHT'; }
+  syncLabel();
+  btn.addEventListener('click', function(){
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    syncLabel();
+    window.parent.postMessage({type: '__edit_mode_set_keys', edits: {theme: next}}, '*');
+  });
+})();
+
+/* Auth tabs + live initials */
+(function(){
+  const tabs = document.querySelectorAll('.auth-tab');
+  const panes = document.querySelectorAll('.auth-pane');
+  function show(target){
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === target));
+    panes.forEach(p => p.hidden = (p.dataset.pane !== target));
+  }
+  tabs.forEach(t => t.addEventListener('click', () => show(t.dataset.tab)));
+  document.querySelectorAll('[data-switch]').forEach(a => {
+    a.addEventListener('click', (e) => { e.preventDefault(); show(a.dataset.switch); });
+  });
+
+  // Live initials
+  const first = document.getElementById('reg-first');
+  const last  = document.getElementById('reg-last');
+  const av    = document.getElementById('reg-avatar');
+  function update(){
+    const f = (first.value.trim()[0] || '').toUpperCase();
+    const l = (last.value.trim()[0]  || '').toUpperCase();
+    av.textContent = (f + l) || '·';
+  }
+  if (first && last && av) {
+    first.addEventListener('input', update);
+    last.addEventListener('input', update);
+    update();
+  }
+})();
+</script>
+<script type="text/babel" src="dashboard.jsx"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="frs-tweaks.jsx"></script>
+</body>
+</html>
