@@ -79,10 +79,16 @@ export function DateRangePicker({
   const [to, setTo] = React.useState(currentTo ?? "");
   const [pending, startTransition] = React.useTransition();
 
-  React.useEffect(() => {
+  // Keep the local inputs in sync with the URL params. Adjusting state during
+  // render (instead of in an effect) avoids a cascading re-render.
+  const [prevFrom, setPrevFrom] = React.useState(currentFrom);
+  const [prevTo, setPrevTo] = React.useState(currentTo);
+  if (currentFrom !== prevFrom || currentTo !== prevTo) {
+    setPrevFrom(currentFrom);
+    setPrevTo(currentTo);
     setFrom(currentFrom ?? "");
     setTo(currentTo ?? "");
-  }, [currentFrom, currentTo]);
+  }
 
   const isActive = Boolean(currentFrom && currentTo);
 

@@ -64,19 +64,19 @@ function SearchDialog({
   const [hits, setHits] = React.useState<SearchHit[]>([]);
   const [loading, setLoading] = React.useState(false);
 
-  React.useEffect(() => {
+  // Reset the search box when the dialog closes. Adjusting state during
+  // render (instead of in an effect) avoids a cascading re-render.
+  const [prevOpen, setPrevOpen] = React.useState(open);
+  if (open !== prevOpen) {
+    setPrevOpen(open);
     if (!open) {
       setQuery("");
       setHits([]);
-      return;
     }
-  }, [open]);
+  }
 
   React.useEffect(() => {
-    if (query.trim().length < 2) {
-      setHits([]);
-      return;
-    }
+    if (query.trim().length < 2) return;
     let active = true;
     const handle = setTimeout(() => {
       setLoading(true);
@@ -93,6 +93,9 @@ function SearchDialog({
       clearTimeout(handle);
     };
   }, [query]);
+
+  // Hide any stale results until the query is long enough to search.
+  const visibleHits = query.trim().length < 2 ? [] : hits;
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -117,12 +120,12 @@ function SearchDialog({
               Digite ao menos 2 caracteres para buscar.
             </div>
           )}
-          {query.trim().length >= 2 && !loading && hits.length === 0 && (
+          {query.trim().length >= 2 && !loading && visibleHits.length === 0 && (
             <div className="px-4 py-6 text-[13px] text-muted-foreground text-center">
               Nada encontrado para “{query}”.
             </div>
           )}
-          {hits.map((h) => (
+          {visibleHits.map((h) => (
             <a
               key={`${h.kind}-${h.id}`}
               href={h.href}

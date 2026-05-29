@@ -42,11 +42,15 @@ export function FormDialog({
   const [pending, startTransition] = React.useTransition();
   const formRef = React.useRef<HTMLFormElement>(null);
 
-  React.useEffect(() => {
+  // Clear the error when the dialog closes. Adjusting state during render
+  // (instead of in an effect) avoids a cascading re-render.
+  const [prevOpen, setPrevOpen] = React.useState(open);
+  if (open !== prevOpen) {
+    setPrevOpen(open);
     if (!open) {
       setError(null);
     }
-  }, [open]);
+  }
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

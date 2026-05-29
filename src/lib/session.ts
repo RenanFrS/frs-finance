@@ -112,6 +112,11 @@ export const getCurrentSession = cache(async () => {
  */
 export async function requireSession() {
   const session = await getCurrentSession();
-  if (!session) redirect("/login");
+  // The proxy already redirects anonymous requests to /login, so reaching here
+  // with no session means the cookie was signature-valid but had no matching
+  // Membership (stale cookie / reseeded db). Route through /api/auth/clear to
+  // actually delete the cookie; otherwise the proxy keeps bouncing the auth
+  // route back to /dashboard and we loop forever.
+  if (!session) redirect("/api/auth/clear");
   return session;
 }

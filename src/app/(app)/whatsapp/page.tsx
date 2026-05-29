@@ -29,11 +29,15 @@ export default async function WhatsappPage() {
     include: { category: true, account: true },
   });
 
+  // Server Component: this runs once per request and never re-renders.
+  // eslint-disable-next-line react-hooks/purity
+  const since = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+
   const total30 = await db.movement.count({
     where: {
       tenantId,
       source: "WHATSAPP",
-      occurredAt: { gte: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000) },
+      occurredAt: { gte: since },
     },
   });
 

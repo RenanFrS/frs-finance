@@ -121,8 +121,11 @@ export default async function DashboardPage({
   });
 
   const connectionsSummary: ConnectionSummary[] = connections.slice(0, 4).map((c) => {
+    // Server Component: this runs once per request and never re-renders.
+    // eslint-disable-next-line react-hooks/purity
+    const nowMs = Date.now();
     const minutes = c.lastSyncAt
-      ? Math.floor((Date.now() - c.lastSyncAt.getTime()) / 60000)
+      ? Math.floor((nowMs - c.lastSyncAt.getTime()) / 60000)
       : null;
     return {
       id: c.id,

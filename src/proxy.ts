@@ -2,7 +2,9 @@ import { NextResponse, type NextRequest } from "next/server";
 
 const COOKIE_NAME = "frs_session";
 const AUTH_ROUTES = ["/login", "/register"];
-const PUBLIC_PREFIXES = ["/_next", "/api/auth", "/favicon", "/logo.svg"];
+const PUBLIC_PREFIXES = ["/_next", "/api/auth", "/favicon", "/logo.svg", "/landing"];
+// Rotas públicas exatas (marketing). A landing vive na raiz.
+const PUBLIC_ROUTES = ["/"];
 
 const enc = new TextEncoder();
 
@@ -58,6 +60,7 @@ export async function proxy(req: NextRequest) {
   }
 
   const isAuthRoute = AUTH_ROUTES.some((p) => pathname.startsWith(p));
+  const isPublicRoute = PUBLIC_ROUTES.includes(pathname);
   const token = req.cookies.get(COOKIE_NAME)?.value ?? null;
   const secret = process.env.SESSION_SECRET;
 
@@ -66,7 +69,7 @@ export async function proxy(req: NextRequest) {
     hasValidSession = await verifyToken(token, secret);
   }
 
-  if (!hasValidSession && !isAuthRoute) {
+  if (!hasValidSession && !isAuthRoute && !isPublicRoute) {
     const url = req.nextUrl.clone();
     url.pathname = "/login";
     url.searchParams.set("from", pathname);
