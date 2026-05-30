@@ -91,6 +91,12 @@ html:has(.landing-root) { scroll-padding-top: 92px; }
 .landing-root .nav-links a:hover { color: var(--primary); }
 .landing-root .nav-cta { display: flex; align-items: center; gap: 10px; }
 
+/* ---------- mobile nav (hamburger + dropdown) ---------- */
+.landing-root .nav-inner { position: relative; z-index: 51; }
+.landing-root .nav-burger { display: none; }
+.landing-root .nav-mobile { display: none; }
+.landing-root .nav-backdrop { display: none; }
+
 /* ---------- buttons ---------- */
 .landing-root .btn {
   font-family: var(--font-mono), monospace; font-size: 13px; letter-spacing: .1em; text-transform: uppercase;
@@ -117,7 +123,7 @@ html:has(.landing-root) { scroll-padding-top: 92px; }
   display: grid; grid-template-columns: 1.02fr 0.98fr; gap: 56px; align-items: center;
 }
 .landing-root .hero h1 {
-  font-family: var(--font-display), serif; font-weight: 800; font-size: clamp(54px, 6vw, 92px);
+  font-family: var(--font-display), serif; font-weight: 800; font-size: clamp(38px, 6vw, 92px);
   line-height: .97; letter-spacing: -.022em; color: var(--ink);
 }
 .landing-root .hero .sub {
@@ -169,7 +175,7 @@ html:has(.landing-root) { scroll-padding-top: 92px; }
 .landing-root .sec-head { max-width: 760px; }
 .landing-root .sec-head.center { margin: 0 auto; text-align: center; }
 .landing-root .sec-head h2 {
-  font-family: var(--font-display), serif; font-weight: 700; font-size: clamp(38px, 4.4vw, 62px);
+  font-family: var(--font-display), serif; font-weight: 700; font-size: clamp(30px, 4.4vw, 62px);
   line-height: 1.04; letter-spacing: -.018em; margin-top: 22px; color: var(--ink);
 }
 .landing-root .sec-head p { font-size: 21px; line-height: 1.55; color: var(--ink-2); margin: 22px 0 0; }
@@ -185,7 +191,7 @@ html:has(.landing-root) { scroll-padding-top: 92px; }
 .landing-root .feat-row:first-of-type { border-top: 0; }
 .landing-root .feat-row.flip .feat-media { order: -1; }
 .landing-root .feat-copy h3 {
-  font-family: var(--font-display), serif; font-weight: 700; font-size: clamp(30px, 3.2vw, 44px);
+  font-family: var(--font-display), serif; font-weight: 700; font-size: clamp(24px, 3.2vw, 44px);
   line-height: 1.08; letter-spacing: -.015em; margin-top: 20px; color: var(--ink);
 }
 .landing-root .feat-copy p { font-size: 20px; line-height: 1.55; color: var(--ink-2); margin: 20px 0 0; max-width: 42ch; }
@@ -271,7 +277,7 @@ html:has(.landing-root) { scroll-padding-top: 92px; }
 .landing-root .price-left .pdesc { font-size: 19px; line-height: 1.5; color: var(--ink-2); margin: 12px 0 0; max-width: 34ch; }
 .landing-root .price-amt { display: flex; align-items: baseline; gap: 6px; margin: 34px 0 4px; }
 .landing-root .price-amt .cur { font-family: var(--font-mono), monospace; font-size: 26px; color: var(--ink-2); align-self: flex-start; margin-top: 12px; }
-.landing-root .price-amt .val { font-family: var(--font-display), serif; font-weight: 800; font-size: 84px; line-height: .9; letter-spacing: -.02em; color: var(--ink); }
+.landing-root .price-amt .val { font-family: var(--font-display), serif; font-weight: 800; font-size: clamp(56px, 14vw, 84px); line-height: .9; letter-spacing: -.02em; color: var(--ink); }
 .landing-root .price-amt .per { font-family: var(--font-mono), monospace; font-size: 15px; color: var(--ink-3); letter-spacing: .04em; }
 .landing-root .price-sub { font-family: var(--font-mono), monospace; font-size: 13px; color: var(--ink-3); letter-spacing: .03em; min-height: 18px; }
 .landing-root .price-free {
@@ -310,7 +316,7 @@ html:has(.landing-root) { scroll-padding-top: 92px; }
    FINAL CTA + FOOTER
    ============================================================ */
 .landing-root .final { text-align: center; }
-.landing-root .final h2 { font-family: var(--font-display), serif; font-weight: 800; font-size: clamp(44px, 6vw, 86px); line-height: .98; letter-spacing: -.02em; color: oklch(0.96 0.02 80); }
+.landing-root .final h2 { font-family: var(--font-display), serif; font-weight: 800; font-size: clamp(36px, 6vw, 86px); line-height: .98; letter-spacing: -.02em; color: oklch(0.96 0.02 80); }
 .landing-root .final p { font-size: 22px; color: oklch(0.82 0.03 76); margin: 26px auto 0; max-width: 40ch; font-style: italic; }
 .landing-root .final .hero-cta { justify-content: center; margin-top: 40px; }
 .landing-root .final .hero-note { justify-content: center; color: oklch(0.74 0.04 72); }
@@ -337,16 +343,91 @@ html:has(.landing-root) { scroll-padding-top: 92px; }
   .landing-root .steps { grid-template-columns: 1fr; gap: 28px; }
   .landing-root .price-card { grid-template-columns: 1fr; }
   .landing-root .price-right { border-left: 0; border-top: 1px solid var(--rule); }
-  .landing-root .nav-links { display: none; }
   .landing-root .sec-pad { padding: 72px 0; }
+
+  /* desktop nav → hamburger */
+  .landing-root .nav-links,
+  .landing-root .nav-cta { display: none; }
+
+  .landing-root .nav-burger {
+    display: inline-flex; flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; width: 44px; height: 44px; margin: -8px -10px -8px 0; padding: 0;
+    background: transparent; border: 0; cursor: pointer;
+  }
+  .landing-root .nav-burger span {
+    display: block; width: 22px; height: 1.5px; background: var(--ink);
+    transition: transform .25s ease, opacity .18s ease;
+  }
+  .landing-root .nav.nav-open .nav-burger span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .landing-root .nav.nav-open .nav-burger span:nth-child(2) { opacity: 0; }
+  .landing-root .nav.nav-open .nav-burger span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* dropdown panel */
+  .landing-root .nav-mobile {
+    display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; z-index: 40;
+    background: color-mix(in oklch, var(--paper) 96%, transparent);
+    backdrop-filter: blur(14px) saturate(1.1);
+    border-bottom: 1px solid var(--rule); padding: 8px 0 22px;
+    visibility: hidden; opacity: 0; transform: translateY(-10px);
+    transition: opacity .22s ease, transform .22s ease, visibility .22s;
+  }
+  .landing-root .nav.nav-open .nav-mobile { visibility: visible; opacity: 1; transform: none; }
+  .landing-root .nav-mobile-links { display: flex; flex-direction: column; padding: 0 40px; }
+  .landing-root .nav-mobile-links a {
+    font-family: var(--font-mono), monospace; font-size: 15px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--ink); padding: 17px 2px; border-bottom: 1px solid var(--rule); transition: color .2s;
+  }
+  .landing-root .nav-mobile-links a:hover { color: var(--primary); }
+  .landing-root .nav-mobile-cta { display: flex; flex-direction: column; gap: 10px; padding: 22px 40px 0; }
+  .landing-root .nav-mobile-cta .btn { width: 100%; justify-content: center; }
+
+  /* backdrop */
+  .landing-root .nav-backdrop {
+    display: block; position: fixed; inset: 0; z-index: 30; padding: 0; border: 0;
+    background: color-mix(in oklch, var(--ink) 24%, transparent);
+    -webkit-backdrop-filter: blur(1px); backdrop-filter: blur(1px); cursor: default;
+    visibility: hidden; opacity: 0; transition: opacity .22s ease, visibility .22s;
+  }
+  .landing-root .nav.nav-open .nav-backdrop { visibility: visible; opacity: 1; }
 }
 @media (max-width: 560px) {
+  html:has(.landing-root) { scroll-padding-top: 72px; }
+
   .landing-root .container,
   .landing-root .nav-inner,
   .landing-root .hero-grid,
   .landing-root .trust-inner,
   .landing-root .footer-inner,
   .landing-root .footer-base { padding-left: 22px; padding-right: 22px; }
+  .landing-root .nav-mobile-links,
+  .landing-root .nav-mobile-cta { padding-left: 22px; padding-right: 22px; }
   .landing-root .price-left, .landing-root .price-right { padding: 34px 26px; }
-  .landing-root .nav-cta .btn-ghost { display: none; }
+
+  /* CTAs ocupam a largura toda no mobile */
+  .landing-root .hero-cta { flex-direction: column; align-items: stretch; }
+  .landing-root .hero-cta .btn { width: 100%; justify-content: center; }
+}
+@media (max-width: 480px) {
+  .landing-root .sec-pad { padding: 56px 0; }
+  .landing-root .hero { padding-top: 48px; }
+  .landing-root .trust { margin-top: 52px; }
+
+  .landing-root .container,
+  .landing-root .nav-inner,
+  .landing-root .hero-grid,
+  .landing-root .trust-inner,
+  .landing-root .footer-inner,
+  .landing-root .footer-base,
+  .landing-root .nav-mobile-links,
+  .landing-root .nav-mobile-cta { padding-left: 18px; padding-right: 18px; }
+
+  .landing-root .feat-row { gap: 28px; padding: 40px 0; }
+  .landing-root .steps { gap: 22px; }
+  .landing-root .footer .ft-cols { gap: 32px; }
+  .landing-root .price-left, .landing-root .price-right { padding: 28px 20px; }
+
+  .landing-root .sec-head p,
+  .landing-root .feat-copy p { font-size: 18px; }
+  .landing-root .step h3 { font-size: 25px; }
+  .landing-root .faq-q { font-size: 20px; }
 }

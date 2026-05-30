@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Faq } from "./faq";
+import { LandingNav } from "./nav";
 import { Pricing } from "./pricing";
 import "./landing.css";
 
@@ -44,30 +45,7 @@ export function Landing() {
   return (
     <div className="landing-root">
       {/* ============ NAV ============ */}
-      <header className="nav">
-        <div className="nav-inner">
-          <Link className="brand" href="#top" aria-label="FrS Finance">
-            <Image src="/logo.svg" alt="" width={38} height={26} priority />
-            <span className="bw">
-              FrS Finance<small>BETA</small>
-            </span>
-          </Link>
-          <nav className="nav-links">
-            <a href="#recursos">Recursos</a>
-            <a href="#como">Como funciona</a>
-            <a href="#preco">Preço</a>
-            <a href="#faq">Dúvidas</a>
-          </nav>
-          <div className="nav-cta">
-            <Link className="btn btn-ghost" href="/login">
-              Entrar
-            </Link>
-            <Link className="btn btn-primary" href="/register">
-              Começar grátis <span className="arr">→</span>
-            </Link>
-          </div>
-        </div>
-      </header>
+      <LandingNav />
 
       <main id="top">
         {/* ============ HERO ============ */}
@@ -317,7 +295,7 @@ export function Landing() {
           </div>
         </div>
         <div className="footer-base">
-          <span>© MMXXVI · FrS Finance</span>
+          <span>© 2026 · FrS Finance</span>
           <span>frs.finance · São Paulo · BR</span>
         </div>
       </footer>

@@ -143,5 +143,5 @@ Multi-tenant via `Tenant` + `Membership` (join `User`↔`Tenant` com papel). Tab
 ---
 
 <div align="center">
-<sub>FrS Finance · projeto pessoal · MMXXVI</sub>
+<sub>FrS Finance · projeto pessoal · 2026</sub>
 </div>
