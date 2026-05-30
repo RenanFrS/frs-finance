@@ -173,7 +173,7 @@ export function Landing() {
               <div className="feat-row flip">
                 <div className="feat-copy">
                   <div className="eyebrow">Feito para durar o dia inteiro</div>
-                  <h3>Claro de dia. Couro à noite.</h3>
+                  <h3>Cappuccino de dia. Expresso à noite.</h3>
                   <p>
                     Tema claro e escuro, três paletas e preferências que ficam salvas. Cada cliente
                     vê apenas os próprios dados, sempre na mesma linguagem de livro-razão.
