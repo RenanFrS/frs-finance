@@ -89,5 +89,8 @@ export async function proxy(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico|logo.svg).*)"],
+  // `_img` são as versões de imagem geradas no build (scripts/gerar-imagens.mjs),
+  // que substituem o `_next/image`. Sem a exceção, a imagem da landing seria
+  // redirecionada para /login para quem não está logado.
+  matcher: ["/((?!_next/static|_next/image|_img|favicon.ico|logo.svg).*)"],
 };

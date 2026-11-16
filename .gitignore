@@ -43,3 +43,6 @@ next-env.d.ts
 
 # design
 /docs
+
+# Versões de imagem geradas no build (scripts/gerar-imagens.mjs)
+/public/_img/
